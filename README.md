@@ -1,7 +1,7 @@
 # kin-rad-gkeyll
 **automated kinetic radiation parameter fitting for gkeyll.**
 
-> *note: the scripts in this repository were created with the help of ai, but designed and architected by jaime caballero for a phd project at differ.*
+> *note: designed by jaime caballero for a phd project at differ and pppl. the scripts in this repository were created with the help of ai.*
 
 this repository houses the complete data ingestion and non-linear optimization pipeline for calculating plasma radiation parameters. it takes raw bremsstrahlung and line radiation data from openadas, fits it to the analytical equations defined by j. roeltgen, and compiles the results into a lightweight database ready for the gkeyll kinetic simulation framework.
 
@@ -36,6 +36,7 @@ kin-rad-gkeyll/
 ├── fit_single.py              # pipeline entry point 3: manual sandbox (TBD)
 ├── swap_fits.py               # tool to overwrite batch fits with manual ones (TBD)
 └── README.md
+```
 
 ### pipeline usage
 
@@ -47,19 +48,22 @@ automatically fetches raw openadas radiation data and translates it into our str
 ```bash
 # download and format all supported elements
 python download_data.py
-
 # or just target a specific element
 python download_data.py --element He
+```
 
-#### 2. batch optimization (fit_batch.py)the main engine. it sweeps through the $N_e$ grids, fits the radiation curves to roeltgen's analytical models, and dynamically saves the best parameters and plots to your fits_data/ directory.
+#### 2. batch optimization 
+fit_batch.py it sweeps through the $N_e$ grids, fits the radiation curves to roeltgen's analytical models, and dynamically saves the best parameters and plots to your fits_data/ directory.
 
 ```bash
 # fit specific elements and assign a unique dataset id
 python fit_batch.py --id run_1 --elements He,Li --optimizer trust-constr
+```
 
 ```bash
 # fit everything, and optionally chop off complex low-temperature tails (e.g., below 1.5 eV)
 python fit_batch.py --id run_1 --elements all --min-te 1.5
+```
 
 #### 3. manual tuning & verification (TBD)automated fits aren't always perfect. this repository includes a "human-in-the-loop" sandbox to safely fix stubborn curves.
 -fit_single.py: manually dial in weights and $V_0$ bounds for a highly specific $N_e$ / $T_e$ slice.
