@@ -65,7 +65,10 @@ python fit_batch.py --id run_1 --elements He,Li --optimizer trust-constr
 python fit_batch.py --id run_1 --elements all --min-te 1.5
 ```
 
-#### 3. manual tuning & verification (TBD)automated fits aren't always perfect. this repository includes a "human-in-the-loop" sandbox to safely fix stubborn curves.
+#### 3. manual tuning & verification (TBD)
+
+if automated fits aren't always perfect, this repository includes a "human-in-the-loop" sandbox to safely fix stubborn curves. sorry for the ai lingo this will change.
+
 -fit_single.py: manually dial in weights and $V_0$ bounds for a highly specific $N_e$ / $T_e$ slice.
 -swap_fits.py: surgically replace a bad batch fit with your handcrafted fit inside the master database.
 -test/check_fit.py: instantly pull up error stats and visual plots for any fit ID directly from the terminal.
